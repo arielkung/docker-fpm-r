@@ -2,7 +2,7 @@ FROM arielkung/fpm-r
 
 # This section is only needed for development
 RUN set -xe \
-  && apt-get update && \
+  && apt-get update \
   && apt-get install -y wget \
   && wget https://pecl.php.net/get/xdebug \
   && tar -xf xdebug \
