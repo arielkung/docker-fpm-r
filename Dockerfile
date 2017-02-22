@@ -20,17 +20,12 @@ RUN apt-get update && \
     zlib1g-dev \
     r-base \
     wget \
-    python-setup-tools
+    python-pip
   
 # PDO
 RUN docker-php-ext-install pdo
 RUN docker-php-ext-install pdo_mysql
 
-# Cleanup
-RUN apt-get clean
-RUN rm -fr /usr/src/php/ext
-
-RUN easy_install pip
 RUN mkdir -p /opt/newrelic
 WORKDIR /opt/newrelic
 RUN wget -r -nd --no-parent -Alinux.tar.gz \
@@ -54,6 +49,10 @@ RUN cp /opt/newrelic/agent/x64/newrelic-20160303.so /usr/local/lib/php/extension
 	&& rm -fr /opt/newrelic
 
 WORKDIR /var/www/html
+
+# Cleanup
+RUN apt-get clean
+RUN rm -fr /usr/src/php/ext
 
 # R packages
 RUN R -e "install.packages(c('rjson', 'klaR', 'stringi'), repos='http://cran.rstudio.com/')"
