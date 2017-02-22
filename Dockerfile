@@ -32,7 +32,7 @@ RUN wget -r -nd --no-parent -Alinux.tar.gz \
     http://download.newrelic.com/php_agent/release/ >/dev/null 2>&1 \
     && tar -xzf newrelic-php*.tar.gz --strip=1
 ENV NR_INSTALL_SILENT true
-ENV NR_INSTALL_KEY NEWRELIC_LICENSE_KEY_HERE
+ENV NR_INSTALL_PHPLIST /usr/local/bin/
 RUN bash newrelic-install install
 RUN pip install newrelic-plugin-agent
 WORKDIR /
