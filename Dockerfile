@@ -23,8 +23,7 @@ RUN apt-get update && \
     python-pip
   
 # PDO
-RUN docker-php-ext-install pdo
-RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install pdo_mysql opcache
 
 RUN mkdir -p /opt/newrelic
 WORKDIR /opt/newrelic
